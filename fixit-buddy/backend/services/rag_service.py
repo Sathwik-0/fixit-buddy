@@ -84,9 +84,9 @@ If you are unsure of a specific detail, say so and suggest iFixit as a reference
 
 
 def _get_llm(temperature: float = 0.3) -> ChatGoogleGenerativeAI:
-    """Return a Gemini 1.5 Pro LLM instance."""
+    """Return a Gemini 1.5 Flash LLM instance."""
     return ChatGoogleGenerativeAI(
-        model="gemini-1.5-pro",           # Long-context model (1M token window)
+        model="gemini-1.5-flash",        # Long-context model (1M token window)
         google_api_key=GEMINI_API_KEY,
         temperature=temperature,
         convert_system_message_to_human=True,  # Required for Gemini via LangChain

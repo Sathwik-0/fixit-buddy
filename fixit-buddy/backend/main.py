@@ -6,11 +6,16 @@ app = FastAPI(title="FixIt Buddy API", version="1.0.0")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Replace with your Vercel URL in production
+    allow_origins=[
+        "https://fixit-buddy-97w5.vercel.app",
+        "http://localhost:3000",]
+
+    ,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
 
 app.include_router(score.router, prefix="/api/score", tags=["Score"])
 app.include_router(rag.router,   prefix="/api/rag",   tags=["RAG"])

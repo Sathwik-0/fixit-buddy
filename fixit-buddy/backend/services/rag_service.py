@@ -14,11 +14,12 @@ import os
 import logging
 from dotenv import load_dotenv
 
+# Modern LangChain 0.2+ Imports
 from langchain_community.document_loaders import PyPDFLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_community.vectorstores import FAISS
 from langchain_google_genai import GoogleGenerativeAIEmbeddings, ChatGoogleGenerativeAI
-from langchain.chains import RetrievalQA
+from langchain.chains import RetrievalQA  # This now works with the updated requirements
 from langchain_core.prompts import PromptTemplate
 from langchain_core.messages import HumanMessage
 

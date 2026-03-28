@@ -241,9 +241,15 @@ export default function Home() {
                   <div className="text-xs text-gray-400">{p.part_number} · {p.savings_vs_new}</div>
                 </div>
                 <div className="text-sm font-medium">€{p.oem_price_eur}</div>
-                {p.eu_compliant
-                  ? <CheckCircle className="w-5 h-5 text-emerald-500" title="EU compliant"/>
-                  : <AlertTriangle className="w-5 h-5 text-red-400" title="Exceeds 30% cap"/>}
+                {p.eu_compliant ? (
+                  <span title="EU compliant">
+                    <CheckCircle className="w-5 h-5 text-emerald-500" />
+                  </span>
+                ) : (
+                  <span title="Exceeds 30% cap">
+                    <AlertTriangle className="w-5 h-5 text-red-400" />
+                  </span>
+                )}
               </div>
             ))}
             <div className="px-4 py-2 text-xs text-gray-400 bg-gray-50 rounded-b-xl">

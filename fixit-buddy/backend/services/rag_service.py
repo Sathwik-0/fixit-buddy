@@ -5,7 +5,8 @@ from dotenv import load_dotenv
 from langchain_community.document_loaders import PyPDFLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_community.vectorstores import FAISS
-from langchain_openai import OpenAIEmbeddings, ChatOpenAI
+from langchain_openai import OpenAIEmbeddings
+from langchain_groq import ChatGroq
 from langchain.chains import RetrievalQA
 from langchain_core.prompts import PromptTemplate
 from langchain_core.messages import HumanMessage
@@ -13,9 +14,8 @@ from langchain_core.messages import HumanMessage
 load_dotenv()
 logger = logging.getLogger(__name__)
 
+GROQ_API_KEY   = os.getenv("GROQ_API_KEY")
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
-if not OPENAI_API_KEY:
-    raise EnvironmentError("OPENAI_API_KEY is not set in environment variables.")
 
 CHUNK_SIZE    = 600
 CHUNK_OVERLAP = 80
@@ -26,10 +26,10 @@ anyone — a student, a parent, a first-time DIYer — can follow confidently.
 
 Strict rules:
 1. Replace ALL part codes with plain descriptions
-2. Replace ALL torque specs with everyday terms
+2. Replace ALL torque specs with everyday terms e.g. finger-tight
 3. Replace ALL tool model numbers with tool types
 4. Add WARNING before every risky step
-5. End every step with a confidence check
+5. End every step with a confidence check e.g. "Does it look right? Great!"
 6. Keep your tone warm and friendly!
 """
 
@@ -55,10 +55,10 @@ Add WARNING before any risky step.
 If unsure, suggest iFixit as a reference."""
 
 
-def _get_llm(temperature: float = 0.3) -> ChatOpenAI:
-    return ChatOpenAI(
-        model="gpt-4o-mini",      # cheap + fast — $0.15 per 1M tokens
-        api_key=OPENAI_API_KEY,
+def _get_llm(temperature: float = 0.3) -> ChatGroq:
+    return ChatGroq(
+        model="llama-3.1-8b-instant",
+        api_key=GROQ_API_KEY,
         temperature=temperature,
     )
 

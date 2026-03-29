@@ -7,10 +7,9 @@ psycopg2-binary==2.9.9
 python-dotenv==1.0.1
 
 langchain
-langchain-openai
+langchain-groq
 langchain-community
 langchain-core
 langchain-text-splitters
 faiss-cpu==1.8.0
 pypdf==4.2.0
-openai
